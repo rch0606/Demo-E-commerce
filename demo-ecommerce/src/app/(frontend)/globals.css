@@ -1,0 +1,175 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-body), var(--font-cairo), ui-sans-serif, system-ui;
+  --font-mono: ui-monospace, monospace;
+
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-green: var(--brand-green);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-mist: var(--brand-mist);
+  --color-brand-haze: var(--brand-haze);
+  --color-brand-blush: var(--brand-blush);
+  --color-brand-coral: var(--brand-coral);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Charte « Sable » — Corail : blanc dominant, pêche très clair pour les surfaces
+   douces, corail profond pour les actions, corail clair pour les touches décoratives.
+   Les noms brand-pink/purple/green/gold sont historiques :
+   pink = accent corail, purple = corail foncé, green = sauge (succès), gold = miel. */
+:root {
+  --background: #ffffff;
+  --foreground: #26232b;
+
+  --brand-pink: #bb5333;
+  --brand-purple: #a3462a;
+  --brand-green: #7fa491;
+  --brand-gold: #e0b25c;
+  --brand-mist: #fff6f2;
+  --brand-haze: #fde8de;
+  --brand-blush: #fcdccc;
+  --brand-coral: #f08a6c;
+
+  --card: #ffffff;
+  --card-foreground: #26232b;
+  --popover: #ffffff;
+  --popover-foreground: #26232b;
+
+  --primary: #bb5333;
+  --primary-foreground: #ffffff;
+  --secondary: #fff6f2;
+  --secondary-foreground: #3a2e2c;
+  --muted: #fff6f2;
+  --muted-foreground: #6e6a72;
+  --accent: #fde8de;
+  --accent-foreground: #3a2e2c;
+  --destructive: #c23b3b;
+  --border: #f1e7e2;
+  --input: #e8dbd4;
+  --ring: #f08a6c;
+  --chart-1: #bb5333;
+  --chart-2: #f08a6c;
+  --chart-3: #e0b25c;
+  --chart-4: #e8a99a;
+  --chart-5: #7fa491;
+  --radius: 0.875rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #26232b;
+  --sidebar-primary: #bb5333;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fff6f2;
+  --sidebar-accent-foreground: #3a2e2c;
+  --sidebar-border: #f1e7e2;
+  --sidebar-ring: #f08a6c;
+}
+
+.dark {
+  --background: #1c1718;
+  --foreground: #f6efec;
+  --card: #241e1f;
+  --card-foreground: #f6efec;
+  --popover: #241e1f;
+  --popover-foreground: #f6efec;
+  --primary: #f08a6c;
+  --primary-foreground: #1c1718;
+  --secondary: #2e2627;
+  --secondary-foreground: #f6efec;
+  --muted: #2e2627;
+  --muted-foreground: #b5aaa7;
+  --accent: #382e2e;
+  --accent-foreground: #f6efec;
+  --destructive: #e07f72;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #f08a6c;
+  --sidebar: #241e1f;
+  --sidebar-foreground: #f6efec;
+  --sidebar-primary: #f08a6c;
+  --sidebar-primary-foreground: #1c1718;
+  --sidebar-accent: #382e2e;
+  --sidebar-accent-foreground: #f6efec;
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-ring: #f08a6c;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  html[dir='rtl'] {
+    font-family: var(--font-cairo), var(--font-body), ui-sans-serif;
+  }
+  /* Force the Arabic-capable font across the whole RTL tree so it overrides
+     the Latin-only body/display fonts applied via font-sans / font-heading utilities. */
+  html[dir='rtl'] * {
+    font-family: var(--font-cairo), ui-sans-serif, system-ui;
+  }
+}
+/* Force remove underlines from all header links */
+header a,
+header a:hover,
+header a:active,
+header a:visited,
+[class*="CMSLink"] a,
+[class*="CMSLink"] a:hover,
+[class*="CMSLink"] a:active,
+[class*="CMSLink"] a:visited {
+  text-decoration: none !important;
+}
+
+/* For RTL too */
+html[dir='rtl'] header a,
+html[dir='rtl'] header a:hover,
+html[dir='rtl'] header a:active,
+html[dir='rtl'] header a:visited {
+  text-decoration: none !important;
+}

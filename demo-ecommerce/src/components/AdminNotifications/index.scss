@@ -1,0 +1,191 @@
+.admin-notif {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 17px;
+}
+
+.admin-notif__bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--dt-radius-sm);
+  background: transparent;
+  color: var(--dt-text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--dt-surface-muted);
+  }
+}
+
+.admin-notif__badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--dt-radius-pill);
+  background: var(--dt-accent);
+  color: var(--dt-surface);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Rendered via portal on document.body — always above sticky order controls */
+.admin-notif__dropdown {
+  position: fixed;
+  width: 360px;
+  max-width: min(360px, calc(100vw - 16px));
+  max-height: min(420px, calc(100vh - 72px));
+  display: flex;
+  flex-direction: column;
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-md);
+  /* Higher than Payload sticky doc controls / step-nav */
+  z-index: 2147483000;
+  overflow: hidden;
+}
+
+.admin-notif__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--dt-border);
+  font-size: 14px;
+  flex-shrink: 0;
+  background: var(--dt-surface);
+}
+
+.admin-notif__mark-all {
+  border: none;
+  background: none;
+  color: var(--dt-accent-text);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.admin-notif__list {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  min-height: 0;
+  background: var(--dt-surface);
+}
+
+.admin-notif__empty {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--dt-text-muted);
+  font-size: 13px;
+}
+
+.admin-notif__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--dt-border);
+  background: transparent;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: var(--dt-surface-muted);
+  }
+
+  &.is-unread {
+    background: color-mix(in srgb, var(--dt-accent-bg) 60%, var(--dt-surface));
+
+    &:hover {
+      background: var(--dt-accent-bg);
+    }
+  }
+}
+
+.admin-notif__item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.admin-notif__type {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dt-accent-text);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.admin-notif__time {
+  font-size: 11px;
+  color: var(--dt-text-muted);
+  flex-shrink: 0;
+}
+
+.admin-notif__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dt-text);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.admin-notif__message {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--dt-text-secondary);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .admin-notif {
+    margin-left: 8px;
+    margin-right: 4px;
+  }
+
+  .admin-notif__dropdown {
+    left: 8px !important;
+    right: 8px !important;
+    width: auto;
+    max-width: none;
+    max-height: min(70vh, calc(100vh - 64px));
+    border-radius: var(--dt-radius-md);
+  }
+
+  .admin-notif__item {
+    padding: 14px;
+  }
+
+  .admin-notif__title {
+    font-size: 14px;
+  }
+
+  .admin-notif__message {
+    font-size: 13px;
+  }
+}

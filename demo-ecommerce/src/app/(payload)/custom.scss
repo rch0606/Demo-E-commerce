@@ -1,0 +1,1223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap');
+
+/* ===============================================================
+   ADMIN — GLOBAL THEME
+   Une seule source de vérité : les tokens --dt-* ci-dessous, aux
+   couleurs de la marque : corail (#bb5333), pervenche
+   (#6f8fe3) et vert (#1d9e75). Neutres doux presque purs : le violet ne sert
+   qu’aux accents.
+   Les variables natives de Payload (--color-base-*, --font-body,
+   --style-radius-*) sont redirigées vers ces tokens pour que les écrans
+   standards (listes, formulaires, popups) suivent le même style.
+================================================================ */
+
+:root {
+  /* font */
+  --dt-font: 'Poppins', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* surfaces */
+  --dt-surface: #ffffff;
+  --dt-surface-muted: #f7f7fa;
+  --dt-page: #fbfbfd;
+
+  /* text */
+  --dt-text: #252532;
+  --dt-text-secondary: #676873;
+  --dt-text-muted: #9797a1;
+
+  /* borders / shape */
+  --dt-border: #ebecf0;
+  --dt-border-strong: #dfe0e5;
+  --dt-radius-sm: 10px;
+  --dt-radius-md: 14px;
+  --dt-radius-lg: 18px;
+  --dt-radius-pill: 999px;
+
+  /* shadow (douce, jamais noire) */
+  --dt-shadow-sm: 0 1px 2px rgba(30, 30, 50, 0.05);
+  --dt-shadow-md: 0 8px 24px rgba(30, 30, 50, 0.06);
+
+  /* accent = corail (actions, lien actif, focus) */
+  --dt-accent-bg: #fff6f2;
+  --dt-accent: #bb5333;
+  --dt-accent-hover: #a3462a;
+  --dt-accent-text: #bb5333;
+  --dt-accent-soft: #f6cbb8;
+
+  /* secondaire = pervenche (infos, « nouveau », 2e série des graphiques) */
+  --dt-purple-bg: #eaf0fd;
+  --dt-purple: #6f8fe3;
+  --dt-purple-text: #4467c4;
+
+  /* success (vert) */
+  --dt-success-bg: #e3f5ee;
+  --dt-success: #1d9e75;
+  --dt-success-text: #147a5a;
+
+  /* warning (ambre) */
+  --dt-warning-bg: #fdf1dc;
+  --dt-warning: #d98a0b;
+  --dt-warning-text: #a86508;
+
+  /* danger (rouge) */
+  --dt-danger-bg: #fdeaea;
+  --dt-danger: #d9434b;
+  --dt-danger-text: #b1303a;
+
+  /* neutral tint */
+  --dt-neutral-bg: #f2f2f5;
+  --dt-neutral-text: #5c5d67;
+
+  --dt-shadow-focus: 0 0 0 3px rgba(138, 125, 232, 0.22);
+
+  /* --- Payload natif ----------------------------------------- */
+  --font-body: var(--dt-font);
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+
+  /* Neutres presque purs (une pointe de froid), même luminosité que les gris Payload :
+     le violet est réservé aux accents (bouton principal, lien actif, focus). */
+  --color-base-0: #ffffff;
+  --color-base-50: #f4f5f9;
+  --color-base-100: #eaebef;
+  --color-base-150: #dcdde1;
+  --color-base-200: #cfd0d4;
+  --color-base-250: #c3c3c7;
+  --color-base-300: #b5b5b9;
+  --color-base-350: #a8a8ac;
+  --color-base-400: #9a9a9e;
+  --color-base-450: #8d8d91;
+  --color-base-500: #808084;
+  --color-base-550: #727276;
+  --color-base-600: #656568;
+  --color-base-650: #57575a;
+  --color-base-700: #4a4a4d;
+  --color-base-750: #3c3c3f;
+  --color-base-800: #2f2f32;
+  --color-base-850: #252532;
+  --color-base-900: #252532;
+  --color-base-950: #252532;
+  --color-base-1000: #252532;
+}
+
+html[dir='rtl'] {
+  --dt-font: 'Cairo', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@keyframes dt-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Reusable pill badge — compose with a tone modifier */
+.dt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--dt-radius-pill);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.dt-badge--accent  { background: var(--dt-accent-bg);  color: var(--dt-accent-text); }
+.dt-badge--success { background: var(--dt-success-bg); color: var(--dt-success-text); }
+.dt-badge--warning { background: var(--dt-warning-bg); color: var(--dt-warning-text); }
+.dt-badge--danger  { background: var(--dt-danger-bg);  color: var(--dt-danger-text); }
+.dt-badge--neutral { background: var(--dt-neutral-bg); color: var(--dt-neutral-text); }
+
+/* Reusable tinted metric tile */
+.dt-tile { border-radius: var(--dt-radius-md); padding: 14px 16px; }
+.dt-tile--accent  { background: var(--dt-accent-bg);  color: var(--dt-accent-text); }
+.dt-tile--success { background: var(--dt-success-bg); color: var(--dt-success-text); }
+.dt-tile--warning { background: var(--dt-warning-bg); color: var(--dt-warning-text); }
+.dt-tile--danger  { background: var(--dt-danger-bg);  color: var(--dt-danger-text); }
+.dt-tile--neutral { background: var(--dt-neutral-bg); color: var(--dt-neutral-text); }
+
+/* ===============================
+   Global
+================================ */
+
+body {
+  background: var(--dt-page) !important;
+  color: var(--dt-text);
+  font-family: var(--dt-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .card__title, .dashboard__label {
+  color: var(--dt-text);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--dt-shadow-focus);
+  border-radius: var(--dt-radius-sm);
+}
+
+/* ===============================
+   Sidebar — menu admin (AdminNav/AdminSideNav) : sections colorées,
+   icône dans une tuile pastel, lien actif en pilule dégradée.
+   Les liens par défaut de Payload sont masqués (même visibilité,
+   recalculée côté serveur par AdminNav).
+================================ */
+
+.nav {
+  background: linear-gradient(180deg, var(--dt-surface) 0%, var(--dt-page) 65%, color-mix(in srgb, var(--dt-accent-bg) 45%, var(--dt-surface)) 100%) !important;
+  border-right: 1px solid var(--dt-border);
+  padding: 18px 14px;
+}
+
+.nav__header {
+  border-bottom: 1px solid var(--dt-border);
+}
+
+/* Anciens groupes Payload : remplacés par le menu admin. */
+.nav .nav-group,
+.nav__link-indicator,
+nav a[href='/admin/folders'] {
+  display: none !important;
+}
+
+.nav__controls a,
+.nav__log-out {
+  color: var(--dt-text-secondary);
+}
+
+.nav__log-out:hover {
+  color: var(--dt-danger-text);
+}
+
+.nav__scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav__scroll::-webkit-scrollbar-thumb {
+  background: var(--dt-border-strong);
+  border-radius: var(--dt-radius-pill);
+}
+
+.pnav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 12px;
+}
+
+/* Recherche */
+.pnav__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-pill);
+  background: var(--dt-surface);
+  color: var(--dt-text-muted);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pnav__search:focus-within {
+  border-color: var(--dt-accent-soft);
+  box-shadow: var(--dt-shadow-focus);
+}
+
+.pnav__search input {
+  flex: 1;
+  min-width: 0;
+  border: 0 !important;
+  outline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font: inherit;
+  font-size: 13px;
+  color: var(--dt-text);
+}
+
+.pnav__search input::placeholder {
+  color: var(--dt-text-muted);
+}
+
+.pnav__search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.pnav__search-clear {
+  display: inline-flex;
+  border: 0;
+  padding: 2px;
+  border-radius: var(--dt-radius-pill);
+  background: var(--dt-neutral-bg);
+  color: var(--dt-text-secondary);
+  cursor: pointer;
+}
+
+/* Sections : chacune a sa teinte, reprise par les tuiles d'icône. */
+.pnav__section { --pnav-tint: var(--dt-accent); --pnav-tint-bg: var(--dt-accent-bg); }
+.pnav__section--ventes { --pnav-tint: var(--dt-purple); --pnav-tint-bg: var(--dt-purple-bg); }
+.pnav__section--catalogue { --pnav-tint: var(--dt-success); --pnav-tint-bg: var(--dt-success-bg); }
+.pnav__section--stock { --pnav-tint: var(--dt-warning); --pnav-tint-bg: var(--dt-warning-bg); }
+.pnav__section--contenu { --pnav-tint: var(--dt-accent-hover); --pnav-tint-bg: color-mix(in srgb, var(--dt-accent-bg) 60%, var(--dt-purple-bg)); }
+.pnav__section--reglages,
+.pnav__section--autres { --pnav-tint: var(--dt-neutral-text); --pnav-tint-bg: var(--dt-neutral-bg); }
+
+.pnav__section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0 4px;
+  padding: 4px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--dt-text-muted);
+  font: inherit;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.pnav__section-toggle span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Petite pastille de la couleur de la section devant son titre. */
+.pnav__section-toggle span::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--dt-radius-pill);
+  background: var(--pnav-tint);
+}
+
+.pnav__section-toggle:hover {
+  color: var(--dt-text-secondary);
+}
+
+.pnav__chevron {
+  transition: transform 0.2s ease;
+}
+
+.pnav__section-toggle[aria-expanded='false'] .pnav__chevron {
+  transform: rotate(-90deg);
+}
+
+.pnav__links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: pnav-reveal 0.18s ease;
+}
+
+@keyframes pnav-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Liens */
+.pnav .pnav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 6px 10px 6px 6px;
+  border-radius: var(--dt-radius-md);
+  color: var(--dt-text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none !important;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.pnav__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--dt-radius-sm);
+  background: var(--pnav-tint-bg, var(--dt-accent-bg));
+  color: var(--pnav-tint, var(--dt-accent));
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.pnav__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pnav .pnav__link:hover {
+  background: var(--dt-surface);
+  color: var(--dt-text);
+  box-shadow: var(--dt-shadow-sm);
+}
+
+.pnav .pnav__link:hover .pnav__icon {
+  transform: scale(1.06) rotate(-4deg);
+}
+
+/* Lien actif : pilule dégradée violet → pervenche. */
+.pnav .pnav__link--active,
+.pnav .pnav__link--active:hover {
+  background: linear-gradient(120deg, color-mix(in srgb, var(--dt-accent) 82%, var(--dt-surface)) 0%, color-mix(in srgb, var(--dt-purple) 78%, var(--dt-surface)) 100%);
+  color: var(--dt-surface);
+  font-weight: 600;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--dt-accent) 16%, transparent);
+}
+
+.pnav .pnav__link--active .pnav__icon {
+  background: color-mix(in srgb, var(--dt-surface) 24%, transparent);
+  color: var(--dt-surface);
+  transform: none;
+}
+
+.pnav__badge {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: var(--dt-radius-pill);
+  background: var(--dt-accent);
+  color: var(--dt-surface);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pnav .pnav__link--active .pnav__badge {
+  background: var(--dt-surface);
+  color: var(--dt-accent-text);
+}
+
+.pnav__home {
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--dt-border-strong);
+}
+
+.pnav__empty {
+  margin: 8px 12px;
+  font-size: 13px;
+  color: var(--dt-text-muted);
+}
+
+/* ===============================
+   App Header
+================================ */
+
+.app-header {
+  background: var(--dt-surface) !important;
+  border-bottom: 1px solid var(--dt-border) !important;
+  box-shadow: none;
+  position: relative;
+  z-index: 10;
+}
+
+.app-header__content {
+  padding: 16px 28px;
+}
+
+.app-header img[alt] {
+  width: auto;
+  height: 30px;
+  object-fit: contain;
+}
+
+.step-nav {
+  color: var(--dt-text-secondary);
+}
+
+/* ===============================
+   Orders collection — hide default
+   Payload list, custom component
+   renders in its place
+================================ */
+
+.collection-list--orders .list-header,
+.collection-list--orders .list-controls,
+.collection-list--orders .collection-list__tables,
+.collection-list--orders .table-wrap,
+.collection-list--orders .table,
+.collection-list--orders .collection-list__wrap {
+  display: none !important;
+}
+
+/* ===============================
+   Visits collection — hide default
+   list (custom SaaS VisitsList)
+================================ */
+
+.collection-list--visits .list-header,
+.collection-list--visits .list-controls,
+.collection-list--visits .collection-list__tables,
+.collection-list--visits .table-wrap,
+.collection-list--visits .table,
+.collection-list--visits .collection-list__wrap {
+  display: none !important;
+}
+
+/* Visits edit — hide default form when custom VisitEdit is used */
+.collection-edit--visits .doc-header,
+.collection-edit--visits .collection-edit__form,
+.collection-edit--visits form.collection-edit,
+.collection-edit--visits .document-fields {
+  display: none !important;
+}
+
+.orders-list-custom {
+  width: 100%;
+  max-width: 100%;
+}
+
+.orders-list-custom .orders-table-container {
+  width: 100%;
+}
+
+.collection-list__wrap {
+  display: contents;
+}
+
+/* ===============================
+   Collection list shell (generic
+   Payload collections)
+================================ */
+
+.list-header__title-and-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--dt-border);
+}
+
+.list-header__title-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.list-header__title {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--dt-text);
+  letter-spacing: -0.02em;
+}
+.collections {
+  display: none !important;
+}
+.collection-list,
+.collection-list[class*="collection-list--"],
+.dashboard,
+.card {
+  background: var(--dt-surface) !important;
+  border: 1px solid var(--dt-border) !important;
+  border-radius: var(--dt-radius-lg) !important;
+  box-shadow: var(--dt-shadow-md) !important;
+}
+
+.collection-list,
+.collection-list[class*="collection-list--"] {
+  margin: 28px auto 0 !important;
+  padding: 24px !important;
+  width: calc(100% - 32px) !important;
+  max-width: 1400px !important;
+  box-sizing: border-box !important;
+  position: relative;
+}
+
+@media (min-width: 1600px) {
+  .collection-list,
+  .collection-list[class*="collection-list--"] {
+    width: calc(100% - 48px) !important;
+    max-width: 1600px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .collection-list,
+  .collection-list[class*="collection-list--"] {
+    width: calc(100% - 24px) !important;
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-list,
+  .collection-list[class*="collection-list--"],
+  .dashboard,
+  .card {
+    border-radius: var(--dt-radius-md) !important;
+  }
+
+  .collection-list,
+  .collection-list[class*="collection-list--"] {
+    width: calc(100% - 16px) !important;
+    margin-top: 16px !important;
+    padding: 14px !important;
+  }
+
+  .app-header__content {
+    padding: 14px 16px;
+  }
+
+  .list-header__title {
+    font-size: 20px;
+  }
+
+  .list-header__title-and-actions {
+    gap: 12px;
+  }
+}
+
+.card:hover {
+  box-shadow: var(--dt-shadow-md);
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__label,
+.dashboard__label {
+  color: var(--dt-text-secondary);
+  font-size: 0.8rem;
+}
+
+.list-header__title,
+.collection-list h1,
+.collection-list h2 {
+  color: var(--dt-text);
+  letter-spacing: -0.02em;
+}
+
+.collection-list input:not([type="checkbox"]):not([type="radio"]),
+.collection-list select,
+.collection-list textarea {
+  border: 1px solid var(--dt-border-strong);
+  border-radius: var(--dt-radius-sm);
+  background: var(--dt-surface);
+  color: var(--dt-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.collection-list input:not([type="checkbox"]):not([type="radio"]):focus,
+.collection-list select:focus,
+.collection-list textarea:focus {
+  border-color: var(--dt-accent);
+  box-shadow: var(--dt-shadow-focus);
+  outline: none;
+}
+
+.collection-list table,
+.table-container table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.collection-list thead th,
+.table-container thead th {
+  background: var(--dt-surface-muted);
+  color: var(--dt-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--dt-border);
+}
+
+.collection-list tbody tr:hover td,
+.table-container tbody tr:hover td {
+  background: var(--dt-surface-muted);
+}
+
+.collection-list tbody tr.selected td {
+  background: var(--dt-neutral-bg);
+}
+
+.collection-list td,
+.table-container td {
+  border-bottom: 1px solid var(--dt-border);
+}
+
+.collection-list td a,
+.table-container td a {
+  color: var(--dt-text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.collection-list td a:hover,
+.table-container td a:hover {
+  color: var(--dt-accent-text);
+  text-decoration: underline;
+}
+
+.collection-list .empty-state,
+.collection-list .table-empty,
+.collection-list .no-results,
+.table-container .empty-state {
+  border-radius: var(--dt-radius-md);
+  background: var(--dt-surface-muted);
+  border: 1px dashed var(--dt-border-strong);
+  color: var(--dt-text-secondary);
+}
+
+/* Orders table specifically — same neutral header as every other table now */
+.collection-list--orders table {
+  border-radius: var(--dt-radius-sm);
+  overflow: hidden;
+}
+
+.collection-list--orders thead th {
+  background: var(--dt-surface-muted);
+  color: var(--dt-text-secondary);
+}
+
+.collection-list--orders tbody tr:nth-child(even) {
+  background: var(--dt-surface-muted);
+}
+
+.collection-list--orders tbody tr:hover {
+  background: var(--dt-surface-muted);
+}
+
+/* ===============================
+   Buttons
+================================ */
+
+.btn,
+.collection-list button {
+  border-radius: var(--dt-radius-sm);
+  font-weight: 600;
+  padding: 9px 16px;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* Primary / Save — brand pink (default ready state) */
+.btn-primary,
+.btn--style-primary,
+.btn-export,
+.pagination button.active {
+  background: var(--dt-accent) !important;
+  color: var(--dt-surface) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hover — slightly darker pink */
+.btn-primary:hover:not(:disabled):not(.btn--disabled),
+.btn--style-primary:hover:not(:disabled):not(.btn--disabled),
+.btn-export:hover:not(:disabled):not(.btn--disabled),
+.pagination button.active:hover:not(:disabled) {
+  background: var(--dt-accent-hover) !important;
+}
+
+/* Saving / updating — lighter pink + wait cursor */
+.btn-primary:disabled,
+.btn-primary.btn--disabled,
+.btn--style-primary:disabled,
+.btn--style-primary.btn--disabled {
+  background: var(--dt-accent-soft) !important;
+  color: var(--dt-surface) !important;
+  opacity: 0.9;
+  cursor: wait !important;
+}
+
+/* Form processing (while request is in flight) */
+form.processing .btn--style-primary,
+form.processing .btn-primary,
+.collection-edit form .btn--style-primary:disabled,
+.doc-controls .btn--style-primary:disabled {
+  background: var(--dt-accent-soft) !important;
+  cursor: wait !important;
+}
+
+.btn-secondary,
+.btn--style-secondary,
+.pagination button {
+  background: var(--dt-surface) !important;
+  border: 1px solid var(--dt-border-strong) !important;
+  color: var(--dt-text) !important;
+}
+
+.btn-secondary:hover,
+.btn--style-secondary:hover,
+.pagination button:hover {
+  border-color: var(--dt-accent) !important;
+  color: var(--dt-accent-text) !important;
+  background: var(--dt-accent-bg) !important;
+}
+
+.pagination button:disabled,
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-export svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===============================
+   Stat cards (generic, non ph-/os- pages)
+================================ */
+
+.stat-card {
+  background: var(--dt-surface-muted);
+  border: none;
+  border-radius: var(--dt-radius-md);
+  padding: 18px 20px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--dt-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.stat-card .stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dt-text);
+  line-height: 1.2;
+}
+
+.stat-card .stat-label {
+  font-size: 13px;
+  color: var(--dt-text-secondary);
+  font-weight: 500;
+}
+
+.stat-card .stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--dt-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dt-surface);
+  color: var(--dt-accent-text);
+}
+
+/* ===============================
+   Filters / search bar
+================================ */
+
+.filters-bar {
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.filters-bar .search-input {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.filters-bar .search-input input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border-radius: var(--dt-radius-sm);
+  border: 1px solid var(--dt-border-strong);
+  background: var(--dt-surface);
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.filters-bar .search-input input:focus {
+  border-color: var(--dt-accent);
+  box-shadow: var(--dt-shadow-focus);
+  outline: none;
+}
+
+.filters-bar .search-input .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dt-text-muted);
+}
+
+.filters-bar .filter-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.filters-bar select {
+  padding: 10px 14px;
+  border-radius: var(--dt-radius-sm);
+  border: 1px solid var(--dt-border-strong);
+  background: var(--dt-surface);
+  font-size: 13px;
+  color: var(--dt-text);
+  cursor: pointer;
+}
+
+.filters-bar select:focus {
+  border-color: var(--dt-accent);
+  box-shadow: var(--dt-shadow-focus);
+  outline: none;
+}
+
+.filters-bar .date-range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dt-text-secondary);
+  font-size: 13px;
+}
+
+.filters-bar .date-range input {
+  padding: 8px 12px;
+  border-radius: var(--dt-radius-sm);
+  border: 1px solid var(--dt-border-strong);
+  font-size: 13px;
+  background: var(--dt-surface);
+}
+
+.filters-bar .date-range input:focus {
+  border-color: var(--dt-accent);
+  box-shadow: var(--dt-shadow-focus);
+  outline: none;
+}
+
+/* ===============================
+   Generic table container
+================================ */
+
+.table-container {
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--dt-shadow-md);
+}
+
+.table-container thead {
+  background: var(--dt-surface-muted);
+  border-bottom: 1px solid var(--dt-border);
+}
+
+.table-container th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dt-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.table-container td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--dt-text);
+}
+
+.table-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status pills (generic — .status-badge etc. share this radius everywhere) */
+.pill-status,
+.status-badge,
+[class*="pill-status"],
+.dash-status-badge,
+.order-edit-status-badge,
+.ph-stock-badge,
+.source-badge {
+  border-radius: var(--dt-radius-pill);
+}
+
+.pill-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill-status .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pill-status.completed { background: var(--dt-success-bg); color: var(--dt-success-text); }
+.pill-status.completed .dot { background: var(--dt-success); }
+
+.pill-status.cancelled { background: var(--dt-danger-bg); color: var(--dt-danger-text); }
+.pill-status.cancelled .dot { background: var(--dt-danger); }
+
+.pill-status.processing { background: var(--dt-accent-bg); color: var(--dt-accent-text); }
+.pill-status.processing .dot { background: var(--dt-accent); }
+
+.attempts-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 2px 10px;
+  border-radius: var(--dt-radius-pill);
+  background: var(--dt-neutral-bg);
+  color: var(--dt-neutral-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===============================
+   Table footer / pagination
+================================ */
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid var(--dt-border);
+  background: var(--dt-surface-muted);
+}
+
+.table-footer .total-label {
+  font-size: 14px;
+  color: var(--dt-text-secondary);
+  font-weight: 500;
+}
+
+.table-footer .total-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dt-text);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border-radius: var(--dt-radius-sm);
+  font-size: 13px;
+}
+
+/* ===============================
+   Inventory movements — hide
+   default list, custom renders
+================================ */
+
+.collection-list--inventory-movements .table-wrap,
+.collection-list--inventory-movements .table,
+.collection-list--inventory-movements .list-controls,
+.collection-list--inventory-movements .list-header {
+  display: none !important;
+}
+
+.collection-list--inventory-movements .collection-list {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.collection-list--inventory-movements .collection-list::before {
+  display: none !important;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 768px) {
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters-bar .search-input {
+    min-width: auto;
+  }
+
+  .filters-bar .filter-group {
+    flex-wrap: wrap;
+  }
+
+  .stat-card .stat-number {
+    font-size: 20px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .table-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+}
+/* ===============================
+   Fil d'Ariane (header)
+================================ */
+
+.step-nav a {
+  color: var(--dt-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.step-nav a:hover {
+  color: var(--dt-accent-text);
+}
+
+/* ===============================
+   Page de connexion — écran partagé.
+   Le panneau de marque vient de BeforeLogin ; on ne cible que la page
+   qui le contient (mot de passe oublié, etc. gardent la carte seule).
+================================ */
+
+.template-minimal {
+  background: var(--dt-page);
+}
+
+.template-minimal__wrap {
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  box-shadow: var(--dt-shadow-md);
+  padding: 36px 32px;
+}
+
+.template-minimal .login__brand img {
+  height: 44px;
+  width: auto !important;
+}
+
+.template-minimal .btn--style-primary {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.template-minimal input {
+  border-radius: var(--dt-radius-sm) !important;
+}
+
+.template-minimal a {
+  color: var(--dt-accent-text);
+}
+
+.brand-login-panel {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .template-minimal:has(.brand-login-panel) {
+    min-height: 100vh;
+    padding-inline-start: calc(50vw + 1.5rem);
+  }
+
+  .brand-login-panel {
+    position: fixed;
+    inset: 0 50% 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 48px;
+    background: linear-gradient(145deg, var(--dt-accent-bg) 0%, color-mix(in srgb, var(--dt-accent-soft) 55%, var(--dt-purple-bg)) 55%, var(--dt-purple-bg) 100%);
+    color: var(--dt-text);
+  }
+
+  .brand-login-panel__content {
+    position: relative;
+    z-index: 1;
+    max-width: 380px;
+    text-align: center;
+  }
+
+  .brand-login-panel__logo {
+    width: 240px;
+    max-width: 100%;
+    filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--dt-accent) 25%, transparent));
+  }
+
+  .brand-login-panel__title {
+    margin: 28px 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--dt-text);
+  }
+
+  .brand-login-panel__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--dt-text-secondary);
+  }
+
+  .brand-login-panel__bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--dt-surface) 55%, transparent);
+  }
+
+  .brand-login-panel__bubble--1 { width: 340px; height: 340px; top: -110px; left: -90px; }
+  .brand-login-panel__bubble--2 { width: 220px; height: 220px; bottom: -60px; right: -40px; }
+  .brand-login-panel__bubble--3 {
+    width: 90px;
+    height: 90px;
+    top: 22%;
+    right: 16%;
+    background: color-mix(in srgb, var(--dt-accent-soft) 45%, transparent);
+  }
+
+  /* Le logo est déjà dans le panneau : inutile de le répéter au-dessus du formulaire. */
+  .template-minimal:has(.brand-login-panel) .login__brand {
+    display: none;
+  }
+}
+
+@media (max-width: 959px) {
+  .template-minimal__wrap {
+    padding: 28px 20px;
+  }
+}

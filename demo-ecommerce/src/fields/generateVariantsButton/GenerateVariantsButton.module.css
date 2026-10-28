@@ -1,0 +1,98 @@
+.container {
+    margin-top: 24px;
+  }
+  
+  .generatedVariantsSection {
+    margin-top: 16px;
+  }
+  
+  .variantsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  
+  .variantsTable thead tr {
+    background-color: #f0f0f0;
+  }
+  
+  .variantsTable th,
+  .variantsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Cellules éditables : le tableau est une proposition, pas un résultat. */
+  .cellInput {
+    width: 100%;
+    max-width: 110px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: inherit;
+    font-size: 13px;
+  }
+
+  .cellInput:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.18);
+  }
+
+  .variantsTable tfoot td {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+
+  .totalLabel {
+    text-align: right;
+  }
+
+  .totalValue {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .evenRow {
+    background-color: #fff;
+  }
+  
+  .oddRow {
+    background-color: #fafafa;
+  }
+  
+  .actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+  }
+  
+  .loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .loadingModal {
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  

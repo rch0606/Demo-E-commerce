@@ -1,0 +1,359 @@
+/* ChiffreAffaire – revenue dashboard (dt tokens) */
+
+.ca-root {
+  padding: 24px;
+  font-family: var(--dt-font);
+  color: var(--dt-text);
+}
+
+/* ---------- Loading / error states ---------- */
+.ca-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px;
+  color: var(--dt-text-secondary);
+  font-family: var(--dt-font);
+}
+
+.ca-error {
+  text-align: center;
+  padding: 48px;
+  color: var(--dt-danger);
+  font-family: var(--dt-font);
+}
+
+.ca-error__retry {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--dt-danger);
+  color: var(--dt-surface);
+  border: none;
+  border-radius: var(--dt-radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--dt-font);
+}
+
+/* ---------- Header ---------- */
+.ca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.ca-header__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dt-text);
+  margin-bottom: 4px;
+}
+
+.ca-header__subtitle {
+  color: var(--dt-text-secondary);
+  font-size: 14px;
+}
+
+.ca-refresh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-sm);
+  background: var(--dt-surface);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--dt-text);
+  font-family: var(--dt-font);
+}
+
+.ca-refresh:hover {
+  border-color: var(--dt-border-strong);
+  background: var(--dt-surface-muted);
+}
+
+/* ---------- KPI grid ---------- */
+.ca-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ca-change {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.ca-change__text {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ca-change--up {
+  color: var(--dt-success);
+}
+
+.ca-change--down {
+  color: var(--dt-danger);
+}
+
+/* ---------- Secondary metrics ---------- */
+.ca-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ca-metric {
+  background: var(--dt-surface-muted);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ca-metric__icon {
+  color: var(--dt-text-secondary);
+}
+
+.ca-metric__value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dt-text);
+}
+
+.ca-metric__label {
+  font-size: 13px;
+  color: var(--dt-text-secondary);
+}
+
+/* ---------- Cards ---------- */
+.ca-card {
+  background: var(--dt-surface);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  box-shadow: var(--dt-shadow-md);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.ca-card--last {
+  margin-bottom: 0;
+}
+
+.ca-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ca-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dt-text);
+}
+
+.ca-card__title--spaced {
+  margin-bottom: 16px;
+}
+
+/* ---------- Timeframe tabs ---------- */
+.ca-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--dt-neutral-bg);
+  border-radius: var(--dt-radius-sm);
+  padding: 4px;
+}
+
+.ca-tab {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--dt-text-secondary);
+  cursor: pointer;
+  box-shadow: none;
+  font-family: var(--dt-font);
+}
+
+.ca-tab:hover {
+  color: var(--dt-text);
+}
+
+.ca-tab--active {
+  background: var(--dt-surface);
+  color: var(--dt-accent-text);
+  box-shadow: var(--dt-shadow-sm);
+}
+
+/* ---------- Bar chart ---------- */
+.ca-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 250px;
+  padding: 0 10px;
+}
+
+.ca-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.ca-bar__value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dt-text);
+  margin-bottom: 4px;
+}
+
+.ca-bar__track {
+  flex: 1;
+  width: 100%;
+  max-width: 40px;
+  background: var(--dt-surface-muted);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+.ca-bar__fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Series order: daily = accent, weekly = purple, monthly = success */
+.ca-bar__fill--daily {
+  background: linear-gradient(180deg, var(--dt-accent), var(--dt-accent-hover));
+}
+
+.ca-bar__fill--weekly {
+  background: linear-gradient(180deg, var(--dt-purple), var(--dt-purple-text));
+}
+
+.ca-bar__fill--monthly {
+  background: linear-gradient(180deg, var(--dt-success), var(--dt-success-text));
+}
+
+.ca-bar__label {
+  font-size: 11px;
+  color: var(--dt-text-secondary);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.ca-bar__label--sm {
+  font-size: 10px;
+}
+
+/* ---------- Revenue by source ---------- */
+.ca-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ca-source__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ca-source__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dt-text);
+}
+
+.ca-source__pct {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dt-accent-text);
+}
+
+.ca-source__track {
+  width: 100%;
+  height: 8px;
+  background: var(--dt-surface-muted);
+  border-radius: var(--dt-radius-pill);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.ca-source__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dt-accent), var(--dt-purple));
+  border-radius: var(--dt-radius-pill);
+}
+
+.ca-source__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--dt-text-secondary);
+}
+
+/* ---------- Top days ---------- */
+.ca-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ca-top__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--dt-surface-muted);
+  border-radius: var(--dt-radius-sm);
+}
+
+.ca-top__rank {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dt-text-muted);
+  min-width: 30px;
+}
+
+.ca-top__body {
+  flex: 1;
+}
+
+.ca-top__date {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dt-text);
+  margin-bottom: 2px;
+}
+
+.ca-top__orders {
+  font-size: 12px;
+  color: var(--dt-text-secondary);
+}
+
+.ca-top__amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dt-success);
+}

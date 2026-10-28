@@ -1,0 +1,141 @@
+.stock-history {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  background: var(--dt-surface);
+  box-shadow: var(--dt-shadow-md);
+}
+
+.stock-history__title {
+  margin: 0 0 16px;
+  color: var(--dt-text);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.stock-history__empty {
+  padding: 25px;
+  text-align: center;
+  border-radius: var(--dt-radius-md);
+  border: 1px dashed var(--dt-border-strong);
+  background: var(--dt-surface-muted);
+  color: var(--dt-text-secondary);
+}
+
+
+.stock-history__table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+.stock-history__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+
+.stock-history__table th {
+  padding: 12px 14px;
+  text-align: left;
+  background: var(--dt-surface-muted);
+  color: var(--dt-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--dt-border);
+}
+
+
+.stock-history__table td {
+  padding: 14px;
+  color: var(--dt-text);
+  font-size: 14px;
+  border-bottom: 1px solid var(--dt-border);
+}
+
+
+.stock-history__table tbody tr {
+  transition: background 0.2s ease;
+}
+
+
+.stock-history__table tbody tr:hover {
+  background: var(--dt-surface-muted);
+}
+
+
+/* Movement badges */
+
+.stock-history__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--dt-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.stock-history__badge--out {
+  background: var(--dt-danger-bg);
+  color: var(--dt-danger-text);
+}
+
+
+.stock-history__badge--in {
+  background: var(--dt-success-bg);
+  color: var(--dt-success-text);
+}
+
+
+.stock-history__badge--neutral {
+  background: var(--dt-neutral-bg);
+  color: var(--dt-neutral-text);
+}
+
+
+/* Numbers */
+
+.stock-history__number {
+  font-weight: 700;
+}
+
+
+.stock-history__after {
+  color: var(--dt-purple-text);
+  font-weight: 800;
+}
+
+.stock-history__variant {
+  color: var(--dt-purple-text);
+  font-weight: 600;
+  font-size: 13px;
+  max-width: 220px;
+}
+
+
+/* Loading */
+
+.stock-history__loading {
+  padding: 20px;
+  color: var(--dt-text-secondary);
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .stock-history {
+    padding: 15px;
+    border-radius: var(--dt-radius-md);
+  }
+
+  .stock-history__title {
+    font-size: 15px;
+  }
+
+}
